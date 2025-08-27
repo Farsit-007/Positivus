@@ -1,6 +1,7 @@
 import { FaLinkedinIn } from "react-icons/fa6";
 import { FaFacebookF, FaTwitter } from "react-icons/fa";
 import Link from "next/link";
+import { PiStarFourFill } from "react-icons/pi";
 
 const Footer = () => {
   const navLinks = [
@@ -19,9 +20,9 @@ const Footer = () => {
             {" "}
             <Link
               href="/"
-              className="text-4xl font-extrabold cursor-pointer text-gray-50"
+              className="text-4xl flex items-center gap-2 font-extrabold cursor-pointer text-gray-50"
             >
-              Positivus
+              <PiStarFourFill className="rotate-45" size={40}/> Positivus
             </Link>
           </div>
 

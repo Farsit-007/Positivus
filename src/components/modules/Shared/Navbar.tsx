@@ -2,6 +2,7 @@
 import Link from "next/link";
 import { useState } from "react";
 import ThemeToggle from "./ThemeToggle";
+import { PiStarFourFill } from "react-icons/pi";
 
 const navLinks = [
   { name: "Home", href: "/" },
@@ -23,9 +24,9 @@ export default function Navbar() {
         <div className="flex-shrink-0">
           <Link
             href="/"
-            className="text-4xl font-extrabold cursor-pointer text-gray-900 dark:text-gray-50  "
+            className="text-4xl font-extrabold flex items-center gap-2 cursor-pointer text-gray-900 dark:text-gray-50  "
           >
-            Positivus
+            <PiStarFourFill className="rotate-45" size={40}/> Positivus
           </Link>
         </div>
 
