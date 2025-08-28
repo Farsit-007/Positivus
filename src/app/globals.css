@@ -5,3 +5,7 @@
   --foreground: #171717;
 }
 @custom-variant dark (&:is(.dark *));
+
+.font-spaceGrotesk {
+  font-family: var(--font-space-grotesk);
+}

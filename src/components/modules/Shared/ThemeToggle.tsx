@@ -13,16 +13,15 @@ const ThemeToggle = () => {
 
   if (!mounted) return null;
 
-  // Determine the actual theme
   const currentTheme = theme === "system" ? systemTheme : theme;
 
   return (
     <button
       onClick={() => setTheme(currentTheme === "dark" ? "light" : "dark")}
-      className="flex items-center justify-center w-10 h-10 rounded-full border border-black dark:border-white transition-colors duration-300 bg-white dark:bg-black hover:bg-gray-200 dark:hover:bg-gray-700"
+      className="flex items-center justify-center w-10 cursor-pointer h-10 rounded-full border border-black dark:border-white transition-colors duration-300 bg-white dark:bg-black hover:bg-gray-200 dark:hover:bg-gray-700"
       aria-label="Toggle Theme"
     >
-      {currentTheme === "dark" ? <LuSun size={20} className="text-yellow-400" /> : <FaMoon size={20} className="text-gray-800" />}
+      {currentTheme === "dark" ? <LuSun size={20} className="text-[#B9FF66]" /> : <FaMoon size={20} className="text-gray-800" />}
     </button>
   );
 };

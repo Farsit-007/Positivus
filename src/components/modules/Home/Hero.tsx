@@ -5,7 +5,7 @@ const Hero = () => {
     <section>
       <div className="grid lg:grid-cols-2 gap-10 ">
         <div>
-          <h1 className="text-4xl md:text-6xl font-bold leading-snug">
+          <h1 className="text-4xl md:text-6xl font-bold leading-snug py-5 lg:py-0">
             <span className="block">Navigating the</span>
             <span className="block">digital landscape</span>
             <span className="block ">for success</span>

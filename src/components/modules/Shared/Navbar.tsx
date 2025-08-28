@@ -20,7 +20,7 @@ export default function Navbar() {
 
   return (
     <nav>
-      <div className="flex justify-between items-center h-18 my-2 md:my-8">
+      <div className="flex justify-between items-center h-18 my-2 md:my-8 ">
         <div className="flex-shrink-0">
           <Link
             href="/"
@@ -52,11 +52,11 @@ export default function Navbar() {
           </div>
         </div>
 
-        <div className="lg:hidden">
+        <div className="lg:hidden flex item-center gap-3">
           <button
             onClick={toggleMenu}
             type="button"
-            className="bg-gray-50 inline-flex items-center justify-center p-2 rounded-md text-gray-600 hover:text-gray-900 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-blue-500 transition-colors duration-200"
+            className="bg-gray-50 inline-flex items-center justify-center p-2 rounded-md text-gray-600 hover:text-gray-900 hover:bg-gray-100 focus:outline-none  transition-colors duration-200"
           >
             {!isMenuOpen ? (
               <svg
@@ -90,6 +90,7 @@ export default function Navbar() {
               </svg>
             )}
           </button>
+          <ThemeToggle />
         </div>
       </div>
 
@@ -103,7 +104,7 @@ export default function Navbar() {
             <Link
               key={link.name}
               href={link.href}
-              className={`block px-3 py-2 rounded-md text-base font-medium transition-colors duration-200 `}
+              className={`block px-3 py-2 rounded-md text-base font-medium hover:text-[#B9FF66] transition-all  duration-200`}
             >
               {link.name}
             </Link>
@@ -112,7 +113,7 @@ export default function Navbar() {
              <button className="border cursor-pointer dark:bg-[#B9FF66] dark:hover:bg-gray-50 transition-all duration-300 text-lg font-medium border-black p-3 rounded-xl  hover:bg-[#B9FF66] text-black"> 
               Request for quote
             </button>
-            <ThemeToggle />
+            
           </div>
         </div>
       </div>

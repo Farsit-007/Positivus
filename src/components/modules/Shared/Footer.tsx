@@ -50,7 +50,7 @@ const Footer = () => {
         </div>
         <div className="col-2 py-15 flex flex-col lg:flex-row gap-5 items-center justify-between">
           <div className="space-y-5 text-center lg:text-start">
-            <h2 className="bg-[#B9FF66] md:w-[200px] text-black rounded-lg p-2 text-4xl">
+            <h2 className="bg-[#B9FF66] md:w-[220px] text-black rounded-lg p-2 text-4xl">
               Contact Us
             </h2>
             <p>Email: info@positivus.com</p>

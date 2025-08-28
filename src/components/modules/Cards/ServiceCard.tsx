@@ -39,9 +39,9 @@ const ServiceCard = ({
         </h3>
 
        
-        <div className="flex items-center gap-3">
+        <div className="flex items-center gap-3 cursor-pointer">
           <button
-            className="rounded-full p-3"
+            className="rounded-full p-3 "
             style={{ backgroundColor: arrowBgColor }}
           >
             <MdOutlineArrowOutward size={30} style={{ color: arrowIconColor }} />
