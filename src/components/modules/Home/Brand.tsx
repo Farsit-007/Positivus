@@ -13,7 +13,7 @@ const Brand = () => {
   return (
     <section className="my-20">
       <div className="hidden lg:block">
-        <Marquee gradient={false} speed={50}>
+        <Marquee gradient={false} autoFill speed={50}>
           {brands.map((brand, index) => (
             <div key={index} className="mx-10">
               <Image
@@ -28,7 +28,7 @@ const Brand = () => {
       </div>
 
       <div className="lg:hidden space-y-6">
-        <Marquee gradient={false} speed={50}>
+        <Marquee gradient={false} autoFill speed={50}>
           {brands.slice(0, 3).map((brand, index) => (
             <div key={index} className="mx-6">
               <Image
@@ -41,7 +41,7 @@ const Brand = () => {
           ))}
         </Marquee>
 
-        <Marquee gradient={false} speed={50} direction="right">
+        <Marquee gradient={false} autoFill speed={50} direction="right">
           {brands.slice(3, 6).map((brand, index) => (
             <div key={index} className="mx-6">
               <Image
