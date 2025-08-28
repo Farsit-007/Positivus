@@ -5,12 +5,12 @@ import ThemeToggle from "./ThemeToggle";
 import { PiStarFourFill } from "react-icons/pi";
 
 const navLinks = [
-  { name: "Home", href: "/" },
-  { name: "About Us", href: "/about" },
-  { name: "Services", href: "/services" },
-  { name: "Use Cases", href: "/portfolio" },
-  { name: "Pricing", href: "/contact" },
-  { name: "Blog", href: "/contact" },
+  { name: "Home", href: "#" },
+  { name: "About Us", href: "#" },
+  { name: "Services", href: "#"},
+  { name: "Use Cases", href: "#" },
+  { name: "Pricing", href: "#" },
+  { name: "Blog", href: "#" },
 ];
 
 export default function Navbar() {
@@ -26,27 +26,29 @@ export default function Navbar() {
             href="/"
             className="text-4xl font-extrabold flex items-center gap-2 cursor-pointer text-gray-900 dark:text-gray-50  "
           >
-            <PiStarFourFill className="rotate-45" size={40}/> Positivus
+            <PiStarFourFill className="rotate-45" size={40} /> Positivus
           </Link>
         </div>
 
         <div className="hidden lg:block">
           <div className=" flex items-baseline space-x-4">
-            <div className=" flex items-baseline gap-4 ">
+            <div className="flex items-baseline gap-3">
               {navLinks.map((link) => (
                 <Link
                   key={link.name}
                   href={link.href}
-                  className={`px-3 py-2 rounded-md hover:text-[#B9FF66] transition-all font-medium  duration-200`}
+                  className="relative group px-3 py-2 rounded-md font-medium transition-all duration-200"
                 >
                   {link.name}
+                  <span className="absolute left-0 bottom-0 h-[3px] w-0 bg-[#B9FF66] transition-all duration-400 group-hover:w-full"></span>
                 </Link>
               ))}
             </div>
+
             <div className="flex items-center gap-4">
-            <button className="border cursor-pointer dark:bg-[#B9FF66] dark:hover:bg-gray-50 transition-all duration-300 text-lg font-medium border-black p-3 rounded-xl  hover:bg-[#B9FF66] text-black"> 
-              Request for quote
-            </button>
+              <button className="border cursor-pointer dark:bg-[#B9FF66] dark:hover:bg-gray-50 transition-all duration-300 text-lg font-medium border-black p-3 rounded-xl  hover:bg-[#B9FF66] text-black">
+                Request for quote
+              </button>
               <ThemeToggle />
             </div>
           </div>
@@ -110,10 +112,9 @@ export default function Navbar() {
             </Link>
           ))}
           <div className="flex items-center gap-4">
-             <button className="border cursor-pointer dark:bg-[#B9FF66] dark:hover:bg-gray-50 transition-all duration-300 text-lg font-medium border-black p-3 rounded-xl  hover:bg-[#B9FF66] text-black"> 
+            <button className="border cursor-pointer dark:bg-[#B9FF66] dark:hover:bg-gray-50 transition-all duration-300 text-lg font-medium border-black p-3 rounded-xl  hover:bg-[#B9FF66] text-black">
               Request for quote
             </button>
-            
           </div>
         </div>
       </div>

@@ -5,12 +5,12 @@ import { PiStarFourFill } from "react-icons/pi";
 
 const Footer = () => {
   const navLinks = [
-    { name: "Home", href: "/" },
-    { name: "About Us", href: "/about" },
-    { name: "Services", href: "/services" },
-    { name: "Use Cases", href: "/portfolio" },
-    { name: "Pricing", href: "/contact" },
-    { name: "Blog", href: "/contact" },
+    { name: "Home", href: "#" },
+    { name: "About Us", href: "#" },
+    { name: "Services", href: "#" },
+    { name: "Use Cases", href: "#" },
+    { name: "Pricing", href: "#" },
+    { name: "Blog", href: "#" },
   ];
   return (
     <footer className="  text-white">
@@ -36,7 +36,7 @@ const Footer = () => {
             ))}
           </div>
 
-          <div className=" space-x-4">
+          <div className=" hidden md:block space-x-4">
             <button className="cursor-pointer rounded-full bg-[#F3F3F3] p-2">
               <FaLinkedinIn className="text-[#191A23]" />
             </button>
@@ -48,7 +48,7 @@ const Footer = () => {
             </button>
           </div>
         </div>
-        <div className="col-2 py-15 flex flex-col lg:flex-row gap-5 items-center justify-between">
+        <div className="col-2 md:py-15 flex flex-col lg:flex-row gap-5 items-center justify-between">
           <div className="space-y-5 text-center lg:text-start">
             <h2 className="bg-[#B9FF66] md:w-[220px] text-black rounded-lg p-2 text-4xl">
               Contact Us
@@ -72,6 +72,17 @@ const Footer = () => {
                 Subscribe to news
               </button>
             </form>
+          </div>
+          <div className="block md:hidden space-x-4">
+            <button className="cursor-pointer rounded-full bg-[#F3F3F3] p-2">
+              <FaLinkedinIn className="text-[#191A23]" />
+            </button>
+            <button className="cursor-pointer rounded-full bg-[#F3F3F3] p-2">
+              <FaFacebookF className="text-[#191A23]" />
+            </button>
+            <button className="cursor-pointer rounded-full bg-[#F3F3F3] p-2">
+              <FaTwitter className="text-[#191A23]" />
+            </button>
           </div>
         </div>
         <hr className="my-8" />

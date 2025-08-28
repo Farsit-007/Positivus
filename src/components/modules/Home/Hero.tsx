@@ -1,5 +1,5 @@
 import Image from "next/image";
-import heroImg from "@/assets/hero.png";
+import heroImg from "@/assets/Illustration.png";
 const Hero = () => {
   return (
     <section>
@@ -10,7 +10,7 @@ const Hero = () => {
             <span className="block">digital landscape</span>
             <span className="block ">for success</span>
           </h1>
-          <div className=" flex justify-center lg:hidden lg:justify-end dark:bg-gray-200/70 dark:rounded-2xl">
+          <div className=" flex justify-center lg:hidden lg:justify-end ">
             <Image
               src={heroImg}
               alt="Illustration"
@@ -28,7 +28,7 @@ const Hero = () => {
             Book a consultation
           </button>
         </div>
-        <div className="hidden lg:flex justify-center lg:justify-end dark:bg-gray-200/70 dark:rounded-2xl ">
+        <div className="hidden lg:flex justify-center lg:justify-end  ">
           <Image
             src={heroImg}
             alt="Illustration"
