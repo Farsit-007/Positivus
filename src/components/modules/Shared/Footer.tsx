@@ -14,7 +14,7 @@ const Footer = () => {
   ];
   return (
     <footer className="  text-white">
-      <div className="bg-[#191A23] rounded-0 lg:rounded-t-3xl px-15 py-15">
+      <div className="bg-[#191A23]  rounded-t-3xl px-15 py-15">
         <div className="col-1 flex flex-col lg:flex-row gap-8 justify-between items-center">
           <div className="">
             {" "}
@@ -48,7 +48,7 @@ const Footer = () => {
             </button>
           </div>
         </div>
-        <div className="col-2 md:py-15 flex flex-col lg:flex-row gap-5 items-center justify-between">
+        <div className="col-2 pt-5 md:py-15 flex flex-col lg:flex-row gap-5 items-center justify-between">
           <div className="space-y-5 text-center lg:text-start">
             <h2 className="bg-[#B9FF66] md:w-[220px] text-black rounded-lg p-2 text-4xl">
               Contact Us
