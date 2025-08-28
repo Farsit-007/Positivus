@@ -55,19 +55,34 @@ export default function TestimonialsSlider() {
 
   return (
     <div className="bg-[#1a1a1a] text-white rounded-3xl py-12 relative overflow-hidden">
+      {/* Slider wrapper */}
+      <div className="relative flex justify-center items-center h-[300px]">
+        {testimonials.map((t, i) => {
+          let position = "hidden";
 
-      <div className="overflow-hidden">
-        <div
-          className="flex transition-transform duration-700 ease-in-out"
-          style={{ transform: `translateX(-${index * 100}%)` }}
-        >
-          {testimonials.map((t, i) => (
+          if (i === index) {
+            position = "active";
+          } else if (i === (index - 1 + testimonials.length) % testimonials.length) {
+            position = "prev";
+          } else if (i === (index + 1) % testimonials.length) {
+            position = "next";
+          }
+
+          return (
             <div
               key={i}
-              className="w-full flex-shrink-0 flex justify-center items-center"
+              className={`absolute transition-all duration-700 ease-in-out ${
+                position === "active"
+                  ? "w-full scale-100 opacity-100 z-20 translate-x-0"
+                  : position === "prev"
+                  ? "hidden md:block w-[60%] opacity-70 z-10 -translate-x-[80%] scale-95"
+                  : position === "next"
+                  ? "hidden md:block w-[60%] opacity-70 z-10 translate-x-[80%] scale-95"
+                  : "opacity-0 pointer-events-none scale-75"
+              }`}
             >
               <div className="max-w-xl mx-auto">
-                <div className="relative border border-lime-400 h-[200px] rounded-4xl px-6 py-8">
+                <div className="relative border border-lime-400 h-[200px] rounded-4xl px-6 py-8 bg-[#1a1a1a]">
                   <p className="text-base text-center md:text-lg leading-relaxed">
                     ”{t.quote}”
                   </p>
@@ -79,12 +94,10 @@ export default function TestimonialsSlider() {
                 </div>
               </div>
             </div>
-            
-          ))}
-        </div>
+          );
+        })}
       </div>
 
-     
       <div className="flex justify-center items-center mt-8 gap-2">
         <button
           onClick={prevSlide}
