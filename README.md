@@ -81,12 +81,12 @@ docker run -p 3000:3000 --rm farsit/positivus-app:1.0
 
 1. **Build the Docker image**
    ```bash
-   docker build -t devaround-landing .
+   docker build -t positivus .
    ```
 
 2. **Run the container**
    ```bash
-   docker run -p 3000:3000 devaround-landing
+   docker run -p 3000:3000 positivus
    ```
 
 The application will be available at `http://localhost:3000`
