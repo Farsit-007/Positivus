@@ -1,4 +1,4 @@
-# DevAround Landing Page
+# Positivus Landing Page
 
 
 A modern, responsive landing page built with Next.js and Tailwind CSS, featuring smooth animations, dark/light theme support, and optimized performance.
@@ -18,7 +18,7 @@ A modern, responsive landing page built with Next.js and Tailwind CSS, featuring
 
 🔗 **[View Live Site](https://positivus-six-beige.vercel.app/)**
 
-![DevAround Landing Page](./public/landing.png)
+![Positivus Landing Page](./public/landing.png)
 
 
 ## 📋 Prerequisites
