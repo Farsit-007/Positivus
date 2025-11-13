@@ -1,12 +1,18 @@
-FROM node:22
+FROM node:22-slim
 
-WORKDIR /app
+WORKDIR /usr/src/app
 
-COPY package.json package-lock.json* ./
-RUN npm install
+COPY app/package*.json ./
 
-COPY . .
+RUN apt-get update \
+    && apt-get install -y --no-install-recommends curl \
+    && rm -rf /var/lib/apt/lists/*
 
-EXPOSE 3000
+RUN npm ci --omit=dev
 
-CMD ["npm", "run", "dev"]
+COPY app/ .
+
+ENV PORT=5000
+EXPOSE 5000
+
+CMD ["npm", "start"]

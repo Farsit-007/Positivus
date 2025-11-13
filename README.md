@@ -1,191 +1,81 @@
-# Positivus Landing Page
+# Positivus CI/CD Demo
 
+End-to-end example of a Jenkins-driven CI/CD pipeline that builds, tests, containerises, deploys, and health-checks a lightweight Node.js web application. The pipeline is designed to run locally using Docker and can be executed entirely inside a Dockerised Jenkins (Docker-in-Docker) environment.
 
-A modern, responsive landing page built with Next.js and Tailwind CSS, featuring smooth animations, dark/light theme support, and optimized performance.
+## 📁 Repository Layout
 
-## 🌟 Features
+- `app/` – Express demo service with `/` and `/health` endpoints plus unit tests.
+- `Dockerfile` – Builds the application image (`positivus-demo-app`).
+- `docker-compose.yml` – Deploys the container locally and exposes port `5000`.
+- `Jenkinsfile` – Declarative pipeline implementing build → test → package → deploy → health check.
+- `healthcheck.sh` – Re-usable script to verify the running container.
+- `jenkins/` – Optional Docker-in-Docker Jenkins setup for the bonus requirement.
+- `docs/` – Capture pipeline evidence (add your screenshot & console log after running).
 
-- **Modern Design**: Clean and professional landing page design
-- **Responsive Layout**: Fully responsive across all device sizes
-- **Dark/Light Theme**: Theme switching with next-themes
-- **Smooth Animations**: Enhanced UX with react-fast-marquee
-- **Icon Integration**: Beautiful icons with react-icons
-- **TypeScript**: Full type safety and better developer experience
-- **Performance Optimized**: Built with Next.js 15 for optimal performance
-- **Docker Support**: Containerized deployment ready
+> The legacy Next.js landing-page sources remain in `src/` for reference but are not used in this CI/CD walkthrough.
 
-## 🚀 Live Demo
-
-🔗 **[View Live Site](https://positivus-six-beige.vercel.app/)**
-
-![Positivus Landing Page](./public/landing.png)
-
-
-## 📋 Prerequisites
-
-Before you begin, ensure you have the following installed:
-- Node.js (version 22)
-- npm 
-- Docker (optional, for containerized deployment)
-
-## 🛠️ Installation & Setup
-
-### Local Development
-
-1. **Clone the repository**
-   ```bash
-   git clone https://github.com/Farsit-007/Positivus.git
-   cd Positivus
-   ```
-
-2. **Install dependencies**
-   ```bash
-   npm install
-   # or
-   yarn install
-   ```
-
-3. **Start the development server**
-   ```bash
-   npm run dev
-   # or
-   yarn dev
-   ```
-
-4. **Open your browser**
-   Navigate to [http://localhost:3000](http://localhost:3000) to see the application.
-
-### Production Build
+## 🚀 Quick Start (Without Jenkins)
 
 ```bash
-# Build the application
-npm run build
-
-# Start the production server
-npm start
+cd app
+npm ci                                      # Install dependencies
+npm test                                    # Run the unit tests
+cd ..                                       # Return to repo root
+docker build -t positivus-demo-app:latest . # Build container image
+docker compose up -d                        # Deploy locally
+./healthcheck.sh                            # Verify health (requires curl)
+docker compose down                         # Tear down
 ```
 
-## 🐳 Docker Deployment
+The service responds at `http://localhost:5000/` and exposes a health endpoint at `http://localhost:5000/health`.
 
-### Quick Start with Docker
+## 🧪 Jenkins Pipeline
+
+The `Jenkinsfile` contains the following stages:
+
+1. **Install Dependencies** – Executes `npm ci` inside `app/`.
+2. **Unit Tests** – Runs `npm test`.
+3. **Package Docker Image** – Builds `positivus-demo-app:latest`.
+4. **Deploy with Docker Compose** – Runs `docker compose up -d`.
+5. **Health Check** – Calls `./healthcheck.sh` to ensure the service is live.
+
+Cleanup (`docker compose down` and Node modules removal) runs automatically in the `post` block.
+
+### Running the Pipeline Natively
+
+1. Install Jenkins with the Docker, Pipeline, and Git plugins.
+2. Ensure the Jenkins agent has access to `node`, `npm`, `docker`, and `docker compose`.
+3. Create a Multibranch Pipeline or Pipeline job pointing to this repository.
+4. Trigger a build; you should see the stages complete in order.
+
+### Bonus: Docker-in-Docker Jenkins
+
+1. `cd jenkins`
+2. `docker compose up -d --build`
+3. Visit `http://localhost:8080`, retrieve the initial admin password from the container logs, and complete the setup.
+4. Inside Jenkins, create a Pipeline job pointing at `/workspace` (the repository is mounted for you).
+5. Run the job; Docker commands will use the host Docker Engine via the shared socket.
+
+Remember to shut Jenkins down when finished:
 
 ```bash
-# Pull the Docker image
-docker pull farsit/positivus-app:1.0
-
-# Run the container
-docker run -p 3000:3000 --rm farsit/positivus-app:1.0
+cd jenkins
+docker compose down
 ```
 
-### Building Your Own Docker Image
+## 📸 Evidence Collection
 
-1. **Build the Docker image**
-   ```bash
-   docker build -t positivus .
-   ```
+After you run the pipeline successfully:
 
-2. **Run the container**
-   ```bash
-   docker run -p 3000:3000 positivus
-   ```
+- Save the Jenkins console output to `docs/pipeline-run.log` (or similar).
+- Capture a screenshot showing the green pipeline steps and add it to `docs/`.
 
-The application will be available at `http://localhost:3000`
+These artefacts are required deliverables alongside the repository.
 
-## 📦 Package Information
+## 🧹 Housekeeping
 
-```json
-{
-  "name": "devaround",
-  "version": "0.1.0",
-  "private": true
-}
-```
+- `healthcheck.sh` uses Bash and `curl`; make it executable (`chmod +x healthcheck.sh`) before use.
+- The Docker image exposes port `5000`; adjust `docker-compose.yml` if you need a different port.
+- If you tailor the pipeline for another environment, update this README so the runbook stays accurate.
 
-### Dependencies
-
-| Package | Version | Purpose |
-|---------|---------|---------|
-| next | 15.5.2 | React framework with SSR/SSG capabilities |
-| react | 19.1.0 | UI library |
-| react-dom | 19.1.0 | DOM renderer for React |
-| next-themes | ^0.4.6 | Theme switching functionality |
-| react-fast-marquee | ^1.6.5 | Smooth scrolling text animations |
-| react-icons | ^5.5.0 | Icon library |
-
-### Development Dependencies
-
-| Package | Version | Purpose |
-|---------|---------|---------|
-| typescript | ^5 | Type checking |
-| tailwindcss | ^4 | Utility-first CSS framework |
-| eslint | ^9 | Code linting |
-| @types/* | Various | TypeScript type definitions |
-
-## 📝 Available Scripts
-
-| Script | Description |
-|--------|-------------|
-| `npm run dev` | Start development server with hot reload |
-| `npm run build` | Build the application for production |
-| `npm start` | Start the production server |
-| `npm run lint` | Run ESLint for code quality checks |
-
-## 🏗️ Project Structure
-
-```
-devaround/
-├── public/           # Static assets
-├── src/
-│   ├── app/          # Next.js app directory
-│   ├── components/   # Reusable UI components
-│   ├── lib/          # Utility functions
-│   └── styles/       # Global styles
-├── tailwind.config.js
-├── next.config.js
-├── package.json
-├── Dockerfile
-└── README.md
-```
-
-## 🎨 Theme Support
-
-The application includes built-in dark and light theme support using `next-themes`. Users can toggle between themes using the theme switcher component.
-
-## 🚢 Deployment
-
-### Vercel (Recommended)
-
-1. Push your code to GitHub
-2. Connect your repository to Vercel
-3. Deploy with zero configuration
-
-### Docker Deployment
-
-Use the provided Docker commands above for containerized deployment to any platform that supports Docker containers.
-
-### Other Platforms
-
-The application can be deployed to any platform that supports Node.js applications:
-- Vercel
-- Netlify
-- Railway
-- Heroku
-- AWS
-- DigitalOcean
-
-
-## 📄 License
-
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
-
-
-## 🙏 Acknowledgments
-
-- Built with [Next.js](https://nextjs.org/)
-- Styled with [Tailwind CSS](https://tailwindcss.com/)
-- Icons from [React Icons](https://react-icons.github.io/react-icons/)
-- Theme support by [next-themes](https://github.com/pacocoursey/next-themes)
-
----
-
-**Made with ❤️ by the Robayat Kalam Farsit**
+Happy shipping! 🛳️
